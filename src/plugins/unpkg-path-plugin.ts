@@ -1,5 +1,10 @@
 import * as esbuild from 'esbuild-wasm';
 import axios from 'axios';
+import localForage from 'localforage';
+
+const fileCache = localForage.createInstance({
+  name: 'filecache',
+});
 
 export const unpkgPathPlugin = () => {
   return {
@@ -25,12 +30,6 @@ export const unpkgPathPlugin = () => {
           path: `https://unpkg.com/${args.path}`,
         };
 
-        // else if (args.path === 'tiny-test-pkg') {
-        //   return {
-        //     path: 'https://unpkg.com/tiny-test-pkg@1.0.0/index.js',
-        //     namespace: 'a',
-        //   };
-        // }
       });
 
       build.onLoad({ filter: /.*/ }, async (args: any) => {
@@ -40,17 +39,31 @@ export const unpkgPathPlugin = () => {
           return {
             loader: 'jsx',
             contents: `
-              import React, { useState } from 'react';
-              console.log(React, useState);
-            `,
+          import React from 'react';
+          console.log('react')
+          `,
           };
         }
+        // Check to see if we already fetched this file
+        const cachedResponse = await fileCache.getItem<esbuild.OnLoadResult>(
+          args.path
+        );
+        // and if it already is in the cache
+        // if it is return it immediately
+        if (cachedResponse) {
+          return cachedResponse;
+        }
+
         const { data, request } = await axios.get(args.path);
-        return {
+        const result: esbuild.OnLoadResult = {
           loader: 'jsx',
           contents: data,
           resolveDir: new URL('.', request.responseURL).pathname,
         };
+
+        // store response in cache
+        await fileCache.setItem(args.path, result);
+        return result;
       });
     },
   };
