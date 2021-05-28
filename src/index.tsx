@@ -6,6 +6,7 @@ import { fetchPlugin } from './plugins/fetch-plugin';
 
 const App = () => {
   const ref = useRef<null | esbuild.Service>();
+  const iframe = useRef<any>();
   const [input, setInput] = useState('');
   const [code, setCode] = useState('');
 
@@ -24,11 +25,17 @@ const App = () => {
   <html>
     <head></head>
     <body>
-      <h1>Hi there</h1>
+      <div id="root"></div>
+      <script type="text/javascript">
+        window.addEventListener('message', (event) => {
+          try {
+            eval(event.data);
+          } catch(err) {
+            alert(err)
+          }
+        }, false)
+      </script>
     </body>
-    <script type="text/javascript">
-      ${code}
-    </script>
   </html>
   `;
 
@@ -48,7 +55,8 @@ const App = () => {
       },
     });
 
-    setCode(result.outputFiles[0].text);
+    //setCode(result.outputFiles[0].text);
+    iframe.current.contentWindow.postMessage(result.outputFiles[0].text, '*');
   };
   return (
     <div>
@@ -63,6 +71,7 @@ const App = () => {
       </div>
       <pre>{code}</pre>
       <iframe
+        ref={iframe}
         srcDoc={html}
         sandbox="allow-scripts"
         width="300"
