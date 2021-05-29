@@ -5,7 +5,7 @@ import { unpkgPathPlugin } from './plugins/unpkg-path-plugin';
 import { fetchPlugin } from './plugins/fetch-plugin';
 import CodeEditor from './components/code-editor';
 
-const App = () => {
+export const App = () => {
   const ref = useRef<null | esbuild.Service>();
   const iframe = useRef<any>();
   const [input, setInput] = useState('');
