@@ -1,0 +1,9 @@
+sudo: required
+services:
+  - docker
+
+before_install:
+  - docker build -f Dockerfile.dev . -t josephreed/js-notebook
+
+script:
+  - docker run -e CI=true josephreed/js-notebook npm run test
