@@ -1,5 +1,6 @@
-import * as esbuild from 'esbuild-wasm';
 import ReactDOM from 'react-dom';
+
+import * as esbuild from 'esbuild-wasm';
 import { useState, useEffect, useRef } from 'react';
 import { unpkgPathPlugin } from './plugins/unpkg-path-plugin';
 import { fetchPlugin } from './plugins/fetch-plugin';
@@ -92,4 +93,6 @@ export const App = () => {
   );
 };
 
-ReactDOM.render(<App />, document.querySelector('#root'));
+
+
+ReactDOM.render(<App />, document.getElementById('root'));
