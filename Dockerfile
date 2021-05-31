@@ -8,11 +8,11 @@ WORKDIR /home/node/app
 
 COPY package*.json ./
 
-RUN npm install
+RUN yarn install --upgrade
 
 COPY ./ ./
 
-RUN npm run build
+RUN yarn build
 
 FROM nginx
 
