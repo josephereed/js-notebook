@@ -6,11 +6,11 @@ RUN mkdir -p /home/node/app
 
 WORKDIR /home/node/app
 
-COPY package.json .
+COPY ./package.json ./
 
 RUN npm install
 
-COPY . .
+COPY ./ ./
 
 RUN npm run build
 
