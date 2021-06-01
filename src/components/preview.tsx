@@ -1,4 +1,5 @@
 import { useRef, useEffect } from 'react';
+import './preview.css';
 
 interface PreviewProps {
   code: string;
@@ -6,7 +7,9 @@ interface PreviewProps {
 
 const html = `
   <html>
-    <head></head>
+    <head>
+      <style>html { background-color: white; }</style>
+    </head>
     <body>
       <div id="root"></div>
       <script type="text/javascript">
@@ -33,14 +36,14 @@ const Preview: React.FC<PreviewProps> = ({ code }) => {
     iframe.current.contentWindow.postMessage(code, '*');
   }, [code]);
   return (
-    <iframe
-      title="js-playpen"
-      ref={iframe}
-      srcDoc={html}
-      sandbox="allow-scripts"
-      width="300"
-      height="300"
-    />
+    <div className="preview-wrapper">
+      <iframe
+        title="js-playpen"
+        ref={iframe}
+        srcDoc={html}
+        sandbox="allow-scripts"
+      />
+    </div>
   );
 };
 

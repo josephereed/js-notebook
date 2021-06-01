@@ -1,5 +1,4 @@
 import { useRef } from 'react';
-import 'bulmaswatch/superhero/bulmaswatch.min.css';
 import MonacoEditor, { EditorDidMount } from '@monaco-editor/react';
 import prettier from 'prettier';
 import parser from 'prettier/parser-babel';
@@ -50,7 +49,7 @@ export const CodeEditor: React.FC<CodeEditorProps> = ({
         editorDidMount={onEditorDidMount}
         value={initialValue}
         language="javascript"
-        height="500px"
+        height="100%"
         theme="vs-dark"
         options={{
           wordWrap: 'on',
