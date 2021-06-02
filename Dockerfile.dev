@@ -6,9 +6,9 @@ RUN mkdir -p /home/node/app
 
 WORKDIR /home/node/app
 
-COPY --chown=node:node package.json ./
+COPY --chown=node:node package*.json ./
 
-RUN yarn install --upgrade
+RUN npm install
 
 COPY --chown=node:node ./ ./
 

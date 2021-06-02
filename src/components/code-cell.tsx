@@ -9,16 +9,11 @@ const CodeCell = () => {
   const [input, setInput] = useState('');
   const [code, setCode] = useState('');
 
-  const onClick = async () => {
-    const output = await build(input);
-    setCode(output);
-  };
-
   useEffect(() => {
     let timer: any;
     timer = setTimeout(async () => {
       const output = await build(input);
-      console.log(output);
+      setCode(output);
     }, 1000);
     return () => {
       clearTimeout(timer);

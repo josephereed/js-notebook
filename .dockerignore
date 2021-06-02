@@ -6,3 +6,4 @@ build
 node_modules
 __snapshots__
 react-app-env.d.ts
+npm-debug.log
