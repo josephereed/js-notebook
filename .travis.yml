@@ -13,7 +13,7 @@ deploy:
   provider: elasticbeanstalk
   region: "us-east-2"
   app: "js-notebook"
-  env: "Jsnotebook-env"
+  env: "Jsnotebook-env-1"
   bucket_name: "elasticbeanstalk-us-east-2-576860479568"
   bucket_path: "js-notebook"
   on:

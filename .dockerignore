@@ -1,5 +1,3 @@
-Dockerfile
-.dockerignore
 .gitignore
 README.md
 build
@@ -7,3 +5,4 @@ node_modules
 __snapshots__
 react-app-env.d.ts
 npm-debug.log
+docker-compose.yml

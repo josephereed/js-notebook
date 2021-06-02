@@ -13,14 +13,17 @@ const html = `
     <body>
       <div id="root"></div>
       <script type="text/javascript">
+        const handleError = (err) => {
+          document.body.style.color = 'red';
+          document.getElementById('root').innerHTML = "<div><h4>Runtime Error</h4>" + err + "</div>";
+          throw(err);
+        }
         window.addEventListener('message', (event) => {
           try {
             document.getElementById('root').innerHTML = '';
             eval(event.data);
           } catch(err) {
-            document.body.style.color = 'red';
-            document.getElementById('root').innerHTML = "<div><h4>Runtime Error</h4>" + err + "</div>";
-            throw(err);
+            handleError(err);
           }
         }, false)
       </script>
@@ -33,7 +36,9 @@ const Preview: React.FC<PreviewProps> = ({ code }) => {
 
   useEffect(() => {
     iframe.current.srcdoc = html;
-    iframe.current.contentWindow.postMessage(code, '*');
+    setTimeout(() => {
+      iframe.current.contentWindow.postMessage(code, '*');
+    }, 50);
   }, [code]);
   return (
     <div className="preview-wrapper">
