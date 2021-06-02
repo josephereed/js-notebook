@@ -1,8 +1,9 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import CodeEditor from './code-editor';
 import Preview from './preview';
 import build from '../bundler';
 import Resizable from './resizable';
+import { setTokenSourceMapRange } from 'typescript';
 
 const CodeCell = () => {
   const [input, setInput] = useState('');
@@ -12,6 +13,18 @@ const CodeCell = () => {
     const output = await build(input);
     setCode(output);
   };
+
+  useEffect(() => {
+    let timer: any;
+    timer = setTimeout(async () => {
+      const output = await build(input);
+      console.log(output);
+    }, 1000);
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [input]);
+
   return (
     <Resizable direction="vertical">
       <div style={{ height: '100%', display: 'flex', flexDirection: 'row' }}>
