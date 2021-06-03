@@ -3,6 +3,7 @@ import './preview.css';
 
 interface PreviewProps {
   code: string;
+  error: string;
 }
 
 const html = `
@@ -18,6 +19,12 @@ const html = `
           document.getElementById('root').innerHTML = "<div><h4>Runtime Error</h4>" + err + "</div>";
           throw(err);
         }
+
+        window.addEventListener('error', (event) => {
+          event.preventDefault();
+          handleError(event.error)
+        })
+
         window.addEventListener('message', (event) => {
           try {
             document.getElementById('root').innerHTML = '';
@@ -31,7 +38,7 @@ const html = `
   </html>
   `;
 
-const Preview: React.FC<PreviewProps> = ({ code }) => {
+const Preview: React.FC<PreviewProps> = ({ code, error }) => {
   const iframe = useRef<any>();
 
   useEffect(() => {
@@ -48,6 +55,7 @@ const Preview: React.FC<PreviewProps> = ({ code }) => {
         srcDoc={html}
         sandbox="allow-scripts"
       />
+      { error && <div className="preview-error">{error}</div>}
     </div>
   );
 };
