@@ -42,10 +42,14 @@ const Preview: React.FC<PreviewProps> = ({ code, error }) => {
   const iframe = useRef<any>();
 
   useEffect(() => {
+    let timer: any;
     iframe.current.srcdoc = html;
-    setTimeout(() => {
+    timer = setTimeout(() => {
       iframe.current.contentWindow.postMessage(code, '*');
     }, 50);
+    return () => {
+      clearTimeout(timer);
+    };
   }, [code]);
   return (
     <div className="preview-wrapper">
@@ -55,7 +59,7 @@ const Preview: React.FC<PreviewProps> = ({ code, error }) => {
         srcDoc={html}
         sandbox="allow-scripts"
       />
-      { error && <div className="preview-error">{error}</div>}
+      {error && <div className="preview-error">{error}</div>}
     </div>
   );
 };

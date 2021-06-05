@@ -1,3 +1,4 @@
+import { clear } from 'console';
 import { useEffect, useState } from 'react';
 import { ResizableBox, ResizableBoxProps } from 'react-resizable';
 import './resizable.css';
@@ -25,6 +26,9 @@ const Resizable: React.FC<ResizableProps> = ({ direction, children }) => {
           setWidth(window.innerWidth * 0.75);
         }
       }, 100);
+      return () => {
+        clearTimeout(timer);
+      };
     };
 
     window.addEventListener('resize', listener);
