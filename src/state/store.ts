@@ -5,6 +5,7 @@ import { ActionType } from './action-types';
 
 export const store = createStore(reducers, {}, applyMiddleware(thunk));
 
+// clean this up
 store.dispatch({
   type: ActionType.INSERT_CELL,
   payload: { id: null, type: 'text' },
@@ -17,4 +18,11 @@ store.dispatch({
   payload: { id: firstItem[0], content: 'asdfasefsdf' },
 });
 
+store.dispatch({
+  type: ActionType.INSERT_CELL,
+  payload: { id: null, type: 'code' },
+});
+
 console.log(store.getState());
+
+export type RootState = ReturnType<typeof store.getState>;

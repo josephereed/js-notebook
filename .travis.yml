@@ -11,11 +11,11 @@ script:
 
 deploy:
   provider: elasticbeanstalk
-  region: "us-east-2"
-  app: "js-notebook"
-  env: "Jsnotebook-env-1"
-  bucket_name: "elasticbeanstalk-us-east-2-576860479568"
-  bucket_path: "js-notebook"
+  region: 'us-east-2'
+  app: 'js-notebook'
+  env: 'Jsnotebook-env'
+  bucket_name: 'elasticbeanstalk-us-east-2-576860479568'
+  bucket_path: 'js-notebook'
   on:
     branch: master
   access_key_id: $AWS_ACCESS_KEY
