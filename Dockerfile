@@ -1,12 +1,10 @@
 FROM node:alpine
-USER node
-RUN mkdir -p /home/node/app
-WORKDIR /home/node/app
-COPY --chown=node:node ./package*.json ./
+WORKDIR '/app'
+COPY package*.json ./
 RUN npm install
-COPY --chown=node:node ./ ./
+COPY . .
 RUN npm run build
 
 FROM nginx
 EXPOSE 80
-COPY --from=0 /home/node/app/build /usr/share/nginx/html
+COPY --from=0 /app/build /usr/share/nginx/html
