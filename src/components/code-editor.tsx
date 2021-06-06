@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useRef, useEffect } from 'react';
 import MonacoEditor, { EditorDidMount } from '@monaco-editor/react';
 import prettier from 'prettier';
 import parser from 'prettier/parser-babel';
@@ -15,6 +15,11 @@ export const CodeEditor: React.FC<CodeEditorProps> = ({
   children,
 }) => {
   const editorRef = useRef<any>();
+  useEffect(() => {
+    setTimeout(() => {
+      onFormatClick();
+    }, 300);
+  }, []);
 
   const onEditorDidMount: EditorDidMount = (getValue, monacoEditor) => {
     editorRef.current = monacoEditor;

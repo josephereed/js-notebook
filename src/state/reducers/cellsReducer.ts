@@ -16,8 +16,21 @@ interface CellState {
 const initialState: CellState = {
   loading: false,
   error: null,
-  order: [],
-  data: {},
+  order: ['ofwgkta', 'ofwgktadgaf'],
+  data: {
+    ofwgkta: {
+      id: 'ofwgkta',
+      type: 'text',
+      content:
+        "# How to render JSX elements with React\n- Import React\n- Import ReactDOM\n\n- Create JSX in React Functional Component\n- Use ReactDOM's render method to render into root div",
+    },
+    ofwgktadgaf: {
+      id: 'ofwgktadgaf',
+      type: 'code',
+      content:
+        "import React from 'react';\nimport ReactDOM from 'react-dom';const App = () => {return (<div><h1>Hi i am a JSX element</h1></div>);};ReactDOM.render(<App />, document.querySelector('#root'));",
+    },
+  },
 };
 
 const cellsReducer = produce(

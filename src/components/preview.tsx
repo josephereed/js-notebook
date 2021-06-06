@@ -1,7 +1,6 @@
 import { useRef, useEffect } from 'react';
 import './preview.css';
 import ActionBar from './action-bar';
-import { useTypedSelector } from '../hooks/use-typed-selector';
 
 interface PreviewProps {
   code: string;

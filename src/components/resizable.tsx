@@ -1,4 +1,3 @@
-import { clear } from 'console';
 import { useEffect, useState } from 'react';
 import { ResizableBox, ResizableBoxProps } from 'react-resizable';
 import './resizable.css';
