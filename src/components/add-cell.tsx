@@ -8,20 +8,26 @@ interface AddCellProps {
 const AddCell: React.FC<AddCellProps> = ({ nextCellId }) => {
   const { insertCellBefore } = useActions();
   return (
-    <div className="add-cell-wrapper" style={{ textAlign: 'center' }}>
+    <div className="add-cell-wrapper">
       <button
-        className="button is-small"
+        className="button is-small add-buttons is-rounded"
         onClick={() => insertCellBefore(nextCellId, 'code')}
       >
-        Add Code Cell
+        <span className="icon is-small">
+          <i className="fas fa-plus"></i>
+        </span>
+        <span>Add Code Cell</span>
       </button>
-      <div className="dot"></div>
       <button
-        className="button is-small"
+        className="button is-small add-buttons is-rounded"
         onClick={() => insertCellBefore(nextCellId, 'text')}
       >
-        Add Text Cell
+        <span className="icon is-small">
+          <i className="fas fa-plus"></i>
+        </span>
+        <span>Add Text Cell</span>
       </button>
+      <div className="divider"></div>
     </div>
   );
 };

@@ -23,6 +23,8 @@ const CodeCell: React.FC<CodeCellProps> = ({ cell }) => {
     }, 1000);
     return () => {
       clearTimeout(timer);
+      setCode('');
+      setError('');
     };
   }, [cell.content]);
 

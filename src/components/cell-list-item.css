@@ -1,3 +1,4 @@
 .cell-list-item {
   position: relative;
+  transition: ease-in 0.3s;
 }

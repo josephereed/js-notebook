@@ -1,17 +1,45 @@
 .add-cell-wrapper {
   position: relative;
+  text-align: center;
+  opacity: 0;
+  transition: opacity 0.5s ease-in 0.1s ease-out 0.3s;
+}
+
+.add-cell-wrapper .divider {
+  position: absolute;
+  top: 50%;
+  bottom: 50%;
+  border-bottom: 2px solid #343e47;
+  width: 1000%;
+  z-index: -1;
+}
+
+.add-cell-wrapper .add-buttons {
+  margin: 10px 20px;
+}
+
+.add-cell-wrapper:hover {
+  opacity: 1;
+}
+
+.force-visible .add-cell-wrapper {
+  opacity: 1 !important;
+}
+
+/* .add-cell-wrapper {
+  position: relative;
 }
 
 .add-cell-wrapper:hover .button {
   opacity: 0.5;
-}
+} */
 
-.add-cell-wrapper .button {
+/* .add-cell-wrapper .button {
   margin-top: 10px;
   opacity: 0;
-}
+} */
 
-.dot {
+/* .dot {
   position: absolute;
   top: 20%;
   left: 49.9%;
@@ -25,4 +53,4 @@
 
 .add-cell-wrapper:hover .dot {
   opacity: 0;
-}
+} */ ;

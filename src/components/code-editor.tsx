@@ -15,14 +15,10 @@ export const CodeEditor: React.FC<CodeEditorProps> = ({
   children,
 }) => {
   const editorRef = useRef<any>();
-  useEffect(() => {
-    setTimeout(() => {
-      onFormatClick();
-    }, 300);
-  }, []);
 
   const onEditorDidMount: EditorDidMount = (getValue, monacoEditor) => {
     editorRef.current = monacoEditor;
+    onFormatClick();
     monacoEditor.updateOptions({ tabSize: 2 });
     monacoEditor.onDidChangeModelContent(() => {
       onChange(getValue());
