@@ -1,9 +1,12 @@
 import { useRef, useEffect } from 'react';
 import './preview.css';
+import ActionBar from './action-bar';
+import { useTypedSelector } from '../hooks/use-typed-selector';
 
 interface PreviewProps {
   code: string;
   error: string;
+  id: string;
 }
 
 const html = `
@@ -38,7 +41,7 @@ const html = `
   </html>
   `;
 
-const Preview: React.FC<PreviewProps> = ({ code, error }) => {
+const Preview: React.FC<PreviewProps> = ({ code, error, id }) => {
   const iframe = useRef<any>();
 
   useEffect(() => {
@@ -53,6 +56,7 @@ const Preview: React.FC<PreviewProps> = ({ code, error }) => {
   }, [code]);
   return (
     <div className="preview-wrapper">
+      <ActionBar id={id} />
       <iframe
         title="js-playpen"
         ref={iframe}

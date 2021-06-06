@@ -10,19 +10,14 @@ store.dispatch({
   type: ActionType.INSERT_CELL,
   payload: { id: null, type: 'text' },
 });
-
-const firstItem = [Object.keys(store.getState().cells.data)[0]];
-
-store.dispatch({
-  type: ActionType.UPDATE_CELL,
-  payload: { id: firstItem[0], content: 'asdfasefsdf' },
-});
-
 store.dispatch({
   type: ActionType.INSERT_CELL,
   payload: { id: null, type: 'code' },
 });
 
-console.log(store.getState());
+store.dispatch({
+  type: ActionType.INSERT_CELL,
+  payload: { id: null, type: 'text' },
+});
 
 export type RootState = ReturnType<typeof store.getState>;

@@ -1,0 +1,28 @@
+.add-cell-wrapper {
+  position: relative;
+}
+
+.add-cell-wrapper:hover .button {
+  opacity: 0.5;
+}
+
+.add-cell-wrapper .button {
+  margin-top: 10px;
+  opacity: 0;
+}
+
+.dot {
+  position: absolute;
+  top: 20%;
+  left: 49.9%;
+  margin-top: 15px;
+  height: 10px;
+  width: 10px;
+  background-color: #343e47;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.add-cell-wrapper:hover .dot {
+  opacity: 0;
+}

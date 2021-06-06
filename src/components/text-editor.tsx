@@ -1,11 +1,17 @@
 import { useState, useEffect, useRef } from 'react';
 import MDEditor from '@uiw/react-md-editor';
 import './text-editor.css';
+import { Cell } from '../state';
+import { useActions } from '../hooks/useActions';
+import ActionBar from './action-bar';
 
-const TextEditor: React.FC = () => {
+interface TextEditorProps {
+  cell: Cell;
+}
+const TextEditor: React.FC<TextEditorProps> = ({ cell }) => {
+  const { updateCell } = useActions();
   const ref = useRef<HTMLDivElement | null>(null);
   const [editing, setEditing] = useState(false);
-  const [value, setValue] = useState('# Header');
 
   useEffect(() => {
     const listener = (event: MouseEvent) => {
@@ -14,7 +20,10 @@ const TextEditor: React.FC = () => {
         event.target &&
         ref.current.contains(event.target as Node)
       ) {
-        return () => {};
+        return () => {
+          // following line placed to possibly remove memory leak
+          setEditing(false);
+        };
       }
       setEditing(false);
     };
@@ -30,19 +39,20 @@ const TextEditor: React.FC = () => {
       <div>
         <div className="text-editor card-content" ref={ref}>
           <MDEditor
-            value={value}
+            value={cell.content}
             onChange={(v) => {
-              setValue(v || '');
+              updateCell(cell.id, v || '');
             }}
-          />
+          ></MDEditor>
         </div>
       </div>
     );
   } else {
     return (
-      <div className="text-editor card">
+      <div className="text-editor card-content">
+        <ActionBar id={cell.id} />
         <div className="card-content" onClick={() => setEditing(true)}>
-          <MDEditor.Markdown source={value} />
+          <MDEditor.Markdown source={cell.content || 'Click to edit'} />
         </div>
       </div>
     );

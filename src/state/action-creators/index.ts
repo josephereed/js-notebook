@@ -16,7 +16,7 @@ export const deleteCell = (id: string): DeleteCellAction => {
 };
 
 export const insertCellBefore = (
-  id: string,
+  id: string | null,
   type: CellTypes
 ): InsertCellBeforeAfter => {
   return {

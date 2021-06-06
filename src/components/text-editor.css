@@ -85,7 +85,7 @@
 }
 
 .text-editor .w-md-editor-text-pre .bold {
-  color: unset;
+  color: #d4d4d4 !important;
 }
 
 .text-editor .token.list.punctuation {

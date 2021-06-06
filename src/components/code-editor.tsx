@@ -12,6 +12,7 @@ interface CodeEditorProps {
 export const CodeEditor: React.FC<CodeEditorProps> = ({
   onChange,
   initialValue,
+  children,
 }) => {
   const editorRef = useRef<any>();
 
@@ -39,6 +40,7 @@ export const CodeEditor: React.FC<CodeEditorProps> = ({
 
   return (
     <div className="editor-wrapper">
+      {children}
       <button
         className="button button-format is-primary is-small"
         onClick={onFormatClick}

@@ -57,8 +57,11 @@ const cellsReducer = produce(
         if (targetIndex > state.order.length - 1 || targetIndex < 0) {
           return;
         }
+
+        const oldValue = state.order[targetIndex];
+        state.order[index] = '';
         state.order[targetIndex] = action.payload.id;
-        state.order[index] = state.order[targetIndex];
+        state.order[index] = oldValue;
         return;
       case ActionType.UPDATE_CELL:
         const { id } = action.payload;

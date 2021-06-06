@@ -1,0 +1,30 @@
+.action-bar {
+  position: absolute;
+  top: 0;
+  right: 0;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.card-content:hover .action-bar {
+  opacity: 1;
+}
+
+.preview-wrapper:hover .action-bar {
+  opacity: 1;
+  z-index: 1;
+}
+
+/* .editor-wrapper .button-format {
+  position: absolute;
+  float: right;
+  top: 5px;
+  right: 5px;
+  z-index: 20;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.editor-wrapper:hover .button-format {
+  opacity: 1;
+} */
