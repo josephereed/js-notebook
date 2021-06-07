@@ -21,7 +21,6 @@ const TextEditor: React.FC<TextEditorProps> = ({ cell }) => {
         ref.current.contains(event.target as Node)
       ) {
         return () => {
-          // following line placed to possibly remove memory leak
           setEditing(false);
         };
       }

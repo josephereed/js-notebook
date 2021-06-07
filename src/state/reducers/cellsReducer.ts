@@ -41,7 +41,6 @@ const cellsReducer = produce(
         state.order = state.order.filter((id) => id !== action.payload);
         return;
       case ActionType.INSERT_CELL:
-        // if payload.id exists insert before
         const cell: Cell = {
           content: '',
           type: action.payload.type,
@@ -60,8 +59,6 @@ const cellsReducer = produce(
           state.data[cell.id] = cell;
         }
 
-        // if payload.id == null insert after last element
-        // add to data object depending on cell typee
         return;
       case ActionType.MOVE_CELL:
         const { direction } = action.payload;

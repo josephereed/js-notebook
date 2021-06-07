@@ -1,0 +1,33 @@
+.iframe-wrapper {
+  background-color: white;
+  height: 100%;
+  width: 100%;
+}
+
+.progress-cover {
+  flex-grow: 1;
+  display: inline-flex;
+  padding-left: 10%;
+  padding-right: 10%;
+  height: 100%;
+  width: 100%;
+}
+
+.progress-cover .progress-bar-wrapper {
+  animation: fadeIn 0.5s;
+  margin: auto;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}

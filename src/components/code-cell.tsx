@@ -1,32 +1,35 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import CodeEditor from './code-editor';
 import Preview from './preview';
-import build from '../bundler';
 import Resizable from './resizable';
 import { Cell } from '../state';
 import { useActions } from '../hooks/useActions';
+import { useTypedSelector } from '../hooks/use-typed-selector';
+import './code-cell.css';
 
 interface CodeCellProps {
   cell: Cell;
 }
 const CodeCell: React.FC<CodeCellProps> = ({ cell }) => {
-  const [error, setError] = useState('');
-  const [code, setCode] = useState('');
-  const { updateCell } = useActions();
+  const bundle = useTypedSelector((state) => {
+    return state.bundles[cell.id];
+  });
 
+  const { updateCell, createBundle } = useActions();
   useEffect(() => {
+    if (!bundle) {
+      createBundle(cell.id, cell.content);
+      return;
+    }
     let timer: any;
     timer = setTimeout(async () => {
-      const output = await build(cell.content);
-      setCode(output.code);
-      setError(output.err);
-    }, 1000);
+      createBundle(cell.id, cell.content);
+    }, 750);
     return () => {
       clearTimeout(timer);
-      setCode('');
-      setError('');
     };
-  }, [cell.content]);
+    //eslint-disable-next-line
+  }, [cell.content, cell.id, createBundle]);
 
   return (
     <div className="card-content">
@@ -38,7 +41,23 @@ const CodeCell: React.FC<CodeCellProps> = ({ cell }) => {
               onChange={(value) => updateCell(cell.id, value)}
             ></CodeEditor>
           </Resizable>
-          <Preview code={code} error={error} id={cell.id}></Preview>
+          <div className="iframe-wrapper">
+            {!bundle || bundle.loading ? (
+              <div className="progress-cover">
+                <div className="progress-bar-wrapper">
+                  <progress className="progress is-small is-primary">
+                    Loading
+                  </progress>
+                </div>
+              </div>
+            ) : (
+              <Preview
+                code={bundle.code}
+                error={bundle.err}
+                id={cell.id}
+              ></Preview>
+            )}
+          </div>
         </div>
       </Resizable>
     </div>
