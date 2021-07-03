@@ -22,13 +22,13 @@ const initialState: CellState = {
       id: 'ofwgkta',
       type: 'text',
       content:
-        "# How to render JSX elements with React\n- Import React\n- Import ReactDOM\n\n- Create JSX in React Functional Component\n- Use ReactDOM's render method to render into root div",
+        "# How to render JSX elements with React\n- Import React\n- Import ReactDOM\n\n- Create JSX in React Functional Component\n- Use ReactDOM's render method to render into root div :)",
     },
     ofwgktadgaf: {
       id: 'ofwgktadgaf',
       type: 'code',
       content:
-        "import React from 'react';\nimport ReactDOM from 'react-dom';const App = () => {return (<div><h1>Hi i am a JSX element</h1></div>);};ReactDOM.render(<App />, document.querySelector('#root'));",
+        "import React from 'react';\nimport ReactDOM from 'react-dom';\nconst App = () => {\nreturn (\n<div\nstyle={{\nposition: 'relative',\nwidth: '700px',\nheight: '250px',\nbackgroundColor: '#B0DB7D',\n}}\n>\n<div\nstyle={{\nwidth: '35%',\nheight: '350px',\nperspective: '40px',\n}}\n>\n<div\nstyle={{\nposition: 'absolute',\nwidth: '42%',\nheight: '22%',\nbackground: 'lightYellow',\nborderRadius: '50%',\nborder: '1px solid gray',\ntop: '21%',\nleft: '100%',\n}}\n>\n<div\nstyle={{\nposition: 'absolute',\nwidth: '5px',\nheight: '5px',\nbackground: 'black',\nborderRadius: '50%',\ntop: '40%',\nleft: '20%',\n}}\n></div>\n<div\nstyle={{\nposition: 'absolute',\nwidth: '5px',\nheight: '5px',\nbackground: 'black',\nborderRadius: '50%',\ntop: '40%',\nleft: '68%',\n}}\n>\n<div\nstyle={{\nposition: 'relative',\nleft: '-500%',\nwidth: '7px',\nheight: '7px',\nborderRadius: '50%',\nborder: '2px solid',\nborderColor: 'transparent black black transparent',\ntransform: 'rotate(45deg)',\n}}\n></div>\n</div>\n</div>\n</div>\n</div>\n);\n};\nReactDOM.render(<App />, document.querySelector('#root'));\n",
     },
   },
 };
